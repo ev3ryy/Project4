@@ -4,3 +4,4 @@
 #include "DialogueWidget.h"
 #include "Components/VerticalBox.h"
 #include "Components/RichTextBlock.h"
+#include "Blueprint/UserWidget.h"

@@ -5,14 +5,14 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/DataTable.h"
-#include "../Data/DialogueBase.h"
-#include "../UI/Widgets/DialogueWidget.h"
-#include "../UI/Widgets/DialogueAnswer.h"
 #include "Delegates/Delegate.h"
+#include "../Data/DialogueBase.h"
 #include "DialogueComponent.generated.h"
 
 class UUserWidget;
 class UVerticalBox;
+class UDialogueWidget;
+class UDialogueAnswer;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PROJECT4_API UDialogueComponent : public UActorComponent

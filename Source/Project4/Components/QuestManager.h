@@ -18,16 +18,18 @@ public:
 	UQuestManager();
 	~UQuestManager();
 
-	UFUNCTION(BlueprintCallable)
-	void SubmitQuest(AQuest* quest);
-
-	UFUNCTION(BlueprintCallable)
-	void CompleteQuest(AQuest* quest);
-
-	UFUNCTION(BlueprintCallable)
-	bool CheckQuestStatus(AQuest* quest) const;
-
-private:
+	UPROPERTY(BlueprintReadOnly)
 	TArray<AQuest*> active_quests;
+
+	UFUNCTION(BlueprintCallable)
+	void AddQuest(TSubclassOf<AQuest> quest);
+
+	UFUNCTION(BlueprintCallable)
+	void ActivateQuest(FString quest_name);
+
+	UFUNCTION(BlueprintCallable)
+	AQuest* FindQuestByName(FString quest_name);
+	
+private:
 		
 };

@@ -8,6 +8,7 @@
 
 #include "Delegates/Delegate.h"
 
+#include "../../Data/DialogueBase.h"
 #include "../../Components/DialogueComponent.h"
 #include "../../Game/MyGameState.h"
 
@@ -24,10 +25,7 @@ void UDialogueAnswer::OnClicked() {
 	if (cached_response.quest) {
 		AMyGameState* gamestate = Cast<AMyGameState>(GetWorld()->GetGameState());
 		if (gamestate) {
-			AQuest* quest = GetWorld()->SpawnActor<AQuest>(cached_response.quest);
-			if (quest) {
-				gamestate->quest_manager->SubmitQuest(quest);
-			}
+			gamestate->quest_manager->AddQuest(cached_response.quest);
 		}
 	}
 

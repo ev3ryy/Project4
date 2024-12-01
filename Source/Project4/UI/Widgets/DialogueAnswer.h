@@ -11,8 +11,6 @@ class UButton;
 class URichTextBlock;
 class UDialogueComponent;
 
-struct FResponses;
-
 UCLASS()
 class PROJECT4_API UDialogueAnswer : public UUserWidget
 {

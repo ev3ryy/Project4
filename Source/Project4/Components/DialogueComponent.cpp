@@ -8,6 +8,8 @@
 #include "Components/RichTextBlock.h"
 #include "../FP_FirstPerson/FP_FirstPersonCharacter.h"
 #include "../Game/MyGameState.h"
+#include "../UI/Widgets/DialogueWidget.h"
+#include "../UI/Widgets/DialogueAnswer.h"
 
 // Sets default values for this component's properties
 UDialogueComponent::UDialogueComponent()
