@@ -7,8 +7,11 @@
 #include "Components/BoxComponent.h"
 
 #include "../../FP_FirstPerson/MyPlayerController.h"
+#include "../../FP_FirstPerson/FP_FirstPersonCharacter.h"
 #include "Components/CanvasPanelSlot.h"
 #include "Components/WidgetComponent.h"	
+
+#include "../../UI/Widgets/QuestIcon.h"
 
 // Sets default values
 AQuest::AQuest()
@@ -22,7 +25,7 @@ AQuest::AQuest()
 	quest_zone->SetCollisionResponseToChannels(ECollisionResponse::ECR_Ignore);
 	quest_zone->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	
-	quest_icon = CreateDefaultSubobject<UWidgetComponent>(TEXT("QuestIcon"));
+	quest3d_icon = CreateDefaultSubobject<UWidgetComponent>(TEXT("QuestIcon"));
 
 	completed = false;
 	activated = false;
@@ -31,7 +34,10 @@ AQuest::AQuest()
 void AQuest::ActivateQuest()
 {
 	activated = true;
-	quest_icon->SetVisibility(true);
+
+	quest3d_icon->SetVisibility(true);
+	if (current_widget) current_widget->AddToViewport();
+
 	UE_LOG(LogTemp, Log, TEXT("quest %s activated"), *name);
 }
 
@@ -41,6 +47,9 @@ void AQuest::CompleteQuest()
 	{
 		completed = true;
 		UE_LOG(LogTemp, Log, TEXT("quest %s completed"), *name);
+
+		if (current_widget) current_widget->RemoveFromViewport();
+
 		Destroy();
 	}
 }
@@ -50,7 +59,14 @@ void AQuest::BeginPlay()
 {
 	Super::BeginPlay();
 
-	quest_icon->SetVisibility(false);
+	quest3d_icon->SetVisibility(false);
+
+	AFP_FirstPersonCharacter* character = Cast<AFP_FirstPersonCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	if (character) {
+		character->quest_location = GetActorLocation();
+	}
+
+	current_widget = CreateWidget<UQuestIcon>(GetWorld(), quest_icon);
 }
 
 // Called every frame

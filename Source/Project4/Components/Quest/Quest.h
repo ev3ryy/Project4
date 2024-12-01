@@ -8,6 +8,7 @@
 
 class UBoxComponent;
 class UWidgetComponent;
+class UQuestIcon;
 
 UCLASS()
 class PROJECT4_API AQuest : public AActor
@@ -34,7 +35,12 @@ public:
 	UBoxComponent* quest_zone;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
-	UWidgetComponent* quest_icon;
+	UWidgetComponent* quest3d_icon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
+	TSubclassOf<UQuestIcon> quest_icon;
+
+	UQuestIcon* current_widget = nullptr;
 
 	UFUNCTION(BlueprintCallable)
 	void ActivateQuest();

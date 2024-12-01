@@ -33,6 +33,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	FVector quest_location;
+
 protected:
 
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);

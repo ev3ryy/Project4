@@ -13,9 +13,4 @@ class PROJECT4_API AMyHUD : public AHUD
 {
 	GENERATED_BODY()
 
-public:
-	UUserWidget* current_widget;
-
-	UFUNCTION(BlueprintCallable)
-	void CreateCustomWidget(TSubclassOf<UUserWidget> widget);
 };
