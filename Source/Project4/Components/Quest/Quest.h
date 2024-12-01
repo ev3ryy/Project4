@@ -7,23 +7,7 @@
 #include "Quest.generated.h"
 
 class UBoxComponent;
-class UIconWidget;
-class UIconComponent;
-
-USTRUCT(BlueprintType)
-struct FObjectiveType
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString description;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FVector world_pos;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool completed = false;
-};
+class UWidgetComponent;
 
 UCLASS()
 class PROJECT4_API AQuest : public AActor
@@ -41,9 +25,6 @@ public:
 	FString description;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
-	TArray<FObjectiveType> objectives;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
 	bool completed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
@@ -51,12 +32,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
 	UBoxComponent* quest_zone;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
-	UIconWidget* quest_icon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Quest)
-	UIconComponent* icon_component;
+	UWidgetComponent* quest_icon;
 
 	UFUNCTION(BlueprintCallable)
 	void ActivateQuest();
@@ -64,21 +42,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CompleteQuest();
 
-	UFUNCTION(BlueprintCallable)
-	FVector2D GetQuestIconPosition();
-
-	UFUNCTION(BlueprintCallable)
-	void UpdateQuestIconPosition();
-
-	UFUNCTION(BlueprintCallable)
-	bool IsQuestVisible();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UFUNCTION()
-	void OnPlayerEnter(UPrimitiveComponent* overlapped, AActor* other, UPrimitiveComponent* other_comp, int32 other_index, bool sweep, const FHitResult& sweep_result);
 	
 public:	
 	// Called every frame

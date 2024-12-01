@@ -20,9 +20,6 @@ void UQuestManager::AddQuest(TSubclassOf<AQuest> quest)
 {
 	if(quest)
 	{
-		// active_quests.Add(quest);
-		// ActivateQuest(quest->name);
-		// UE_LOG(LogTemp, Log, TEXT("added quest %s"), *quest->name);
 		TArray<AActor*> out;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AQuest::StaticClass(), out);
 		for(AActor* finded : out)

@@ -20,32 +20,14 @@ ANPC::ANPC()
 	RootComponent = GetCapsuleComponent();
 
 	dialogue = CreateDefaultSubobject<UDialogueComponent>(TEXT("DialogueComponent"));
-
-	quest_icon = CreateDefaultSubobject<UWidgetComponent>(TEXT("QuestIcon"));
-	quest_icon->SetupAttachment(RootComponent);
-	quest_icon->SetWidgetSpace(EWidgetSpace::Screen);
-	quest_icon->SetDrawSize(FVector2D(32.0f, 32.0f));
-	quest_icon->SetRelativeLocation(FVector(0.0f, 0.0f, 150.0f));
-
-	current_widget = nullptr;
 }
 
 // Called when the game starts or when spawned
 void ANPC::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	if(quest_icon) quest_icon->SetVisibility(false);
 }
 
 void ANPC::Interact_Implementation(AActor* instigator) {
 	dialogue->StartDialogue(TEXT("first"));
-}
-
-void ANPC::SetQuestIconState(bool state) {
-	UUserWidget* widget = quest_icon->GetWidget();
-
-	widget->CallFunctionByNameWithArguments(state ? TEXT("SetMandatoryIcon") : TEXT("SetOptionalIcon"), *GLog, nullptr, true);
-
-	quest_icon->SetVisibility(true);
 }

@@ -22,16 +22,8 @@ public:
 
 	void Interact_Implementation(AActor* instigator) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
-	UWidgetComponent* quest_icon;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Components)
 	UDialogueComponent* dialogue;
-
-	UUserWidget* current_widget;
-
-	UFUNCTION(BlueprintCallable)
-	void SetQuestIconState(bool state);
 
 protected:
 	// Called when the game starts or when spawned
